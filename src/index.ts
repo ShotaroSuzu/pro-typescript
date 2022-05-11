@@ -1,4 +1,4 @@
-const greeting = "Hello, ";
-const target = greeting;
+const greeting = "Hello, "; //この1行は文。"Hello, "の部分は式
+const text = greeting + "world!";
 
-console.log(greeting + target);
+console.log(text);
