@@ -161,3 +161,20 @@ const objectReaonly = () => {
   const obj: MyObj = { foo: 123 };
   // obj.foo = 0;これはコンパイルエラーになる。
 };
+
+const objectTypeOfKeyWord = () => {
+  const num: number = 1;
+  type T = typeof num;
+  const foo: T = 123;
+
+  const obj = {
+    foo: 123,
+    bar: "in",
+  };
+  type T2 = typeof obj;
+  const obj2: T2 = {
+    foo: -50,
+    bar: "hello",
+  };
+  console.log(obj2);
+};
