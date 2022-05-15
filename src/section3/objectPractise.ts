@@ -135,4 +135,21 @@ const objectIndexSignature = () => {
   console.log(data.chicken);
   //   data.bento ="130"これもコンパイルエラー
 };
-objectIndexSignature();
+// objectIndexSignature();
+
+const objectOptional = () => {
+  type MyObj = {
+    foo: boolean;
+    bar: boolean;
+    baz?: number;
+  };
+  const obj: MyObj = { foo: false, bar: true };
+  const obj2: MyObj = { foo: true, bar: false, baz: 123 };
+  console.log(obj);
+  console.log(obj2);
+  //   console.log(obj2.baz * 100)これはbazにundefinedが入る可能性があるためコンパイルエラーになる
+  if (obj2.baz) {
+    console.log(obj2.baz * 100); // undefinedが来ないことが確定であれば大丈夫
+  }
+};
+objectOptional();
