@@ -118,3 +118,21 @@ const objectInterface = () => {
     bar: "string",
   };
 };
+
+const objectIndexSignature = () => {
+  type PriceData = {
+    // インデックスシグネチャは型安全性を破壊するので、基本は使わない方がよい。使う場合は型安全性が破壊されていることに注意する。
+    [key: string]: number;
+  };
+  const data: PriceData = {
+    apple: 220,
+    coffee: 120,
+    // bento: "150",これはコンパイルエラー
+  };
+  console.log(data.apple);
+  console.log(data.chicken);
+  data.chicken = 230;
+  console.log(data.chicken);
+  //   data.bento ="130"これもコンパイルエラー
+};
+objectIndexSignature();
