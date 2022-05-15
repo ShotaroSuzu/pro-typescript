@@ -50,3 +50,18 @@ const objectLiteralPractice2 = () => {
   });
 };
 //objectLiteralPractice2();
+
+const objectLiteralPractice3 = () => {
+  const obj1 = { bar: 456, baz: 789 };
+  const obj2 = { foo: 123, obj1 };
+  const obj3 = { foo: 123, ...obj1 };
+  const obj4 = { ...obj3, foo: -999 };
+  //   const obj4 = {foo:-999, ...obj3} これはコンパイルエラー。すでにobj3にfooが含まれているので。どのみち上書きされるものを宣言する意味がないため。
+  const obj5 = { ...obj1, ...obj4 };
+  console.log(obj1);
+  console.log(obj2);
+  console.log(obj3);
+  console.log(obj4);
+  console.log(obj5);
+};
+objectLiteralPractice3();
