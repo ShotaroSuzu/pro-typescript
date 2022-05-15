@@ -1,11 +1,15 @@
 const limit = 100;
 
+const result: string[] = [];
+
 for (let index = 1; index <= limit; index++) {
   index % 15
     ? index % 5
       ? index % 3
-        ? console.log(index)
-        : console.log("Fizz")
-      : console.log("Buzz")
-    : console.log("FizzBuzz");
+        ? result.push(String(index))
+        : result.push("Fizz")
+      : result.push("Buzz")
+    : result.push("FizzBuzz");
 }
+
+console.log(result.join(" "));
