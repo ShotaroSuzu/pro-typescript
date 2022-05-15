@@ -64,4 +64,45 @@ const objectLiteralPractice3 = () => {
   console.log(obj4);
   console.log(obj5);
 };
-objectLiteralPractice3();
+// objectLiteralPractice3();
+
+const sameObject = () => {
+  const foo = { num: 1234, nested: { str: "hello" } };
+  const bar = foo;
+  const baz = { ...foo };
+  const qux = { ...foo, nested: { ...foo.nested } };
+  console.log(bar.num, bar.nested.str);
+  bar.num = 0;
+  foo.nested.str = "goodbye";
+  console.log(foo.num, foo.nested.str);
+  console.log(baz.num, baz.nested.str);
+  console.log(qux.num, qux.nested.str);
+
+  const eq1 = { num: 1234 };
+  const eq2 = eq1;
+  const eq3 = { num: 1234 };
+  console.log(eq1 === eq2);
+  console.log(eq1 === eq3);
+};
+// sameObject();
+
+const objectType = () => {
+  const obj: { foo: number; bar: string } = {
+    foo: 123,
+    // bar: 123, bar は string なのでこれはコンパイルエラー
+    bar: "Hello, world!",
+    // baz: "another property" これを書くとコンパイルエラーになる。
+  };
+  console.log(obj);
+  console.log(obj.bar);
+  //   console.log(obj.baz);型にないプロパティにアクセスしようとするとコンパイルエラー
+  obj.foo = 456;
+  //   obj.foo = null; 型がnumberなのでnullはコンパイルエラー
+  // 新たに型を作るというよりは、左辺にある型に右辺で指定した名前でもアクセスできるようにするという意味。
+  type FooBarObj = { foo: number; bar: string };
+  // 従って、以下のようにもかける
+  type UserId = string;
+  const obj2: FooBarObj = { foo: 456, bar: "Good bye!" };
+  const obj3: { foo: number; bar: UserId } = { foo: 789, bar: "Good night!" }; // UserIdという型を使っているが、実態はstring型
+};
+objectType();
