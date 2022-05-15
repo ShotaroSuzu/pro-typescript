@@ -105,4 +105,16 @@ const objectType = () => {
   const obj2: FooBarObj = { foo: 456, bar: "Good bye!" };
   const obj3: { foo: number; bar: UserId } = { foo: 789, bar: "Good night!" }; // UserIdという型を使っているが、実態はstring型
 };
-objectType();
+// objectType();
+
+const objectInterface = () => {
+  // 今はほぼ interfaceじゃないとだめな状況はないため、typeで宣言するのが一般的
+  interface FooBarObj {
+    foo: number;
+    bar: string;
+  }
+  const obj: FooBarObj = {
+    foo: 0,
+    bar: "string",
+  };
+};
