@@ -152,4 +152,12 @@ const objectOptional = () => {
     console.log(obj2.baz * 100); // undefinedが来ないことが確定であれば大丈夫
   }
 };
-objectOptional();
+// objectOptional();
+
+const objectReaonly = () => {
+  type MyObj = {
+    readonly foo: number;
+  };
+  const obj: MyObj = { foo: 123 };
+  // obj.foo = 0;これはコンパイルエラーになる。
+};
