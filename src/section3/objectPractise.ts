@@ -243,4 +243,49 @@ const subTyping = () => {
   };
   const u2: User = orig; //これはOK。余分なプロパティを持つというコンパイルエラーはオブジェクトリテラルを直接型注釈のある変数に入れた時のみ発生する
 };
-subTyping();
+// subTyping();
+
+const typeParameter = () => {
+  type User<T> = {
+    name: string;
+    child: T;
+  };
+  // この時点ではParentやChildにはどのような型が入るか決まっていない
+  type Family1<Parent, Child> = {
+    mother: Parent;
+    father: Parent;
+    child: Child;
+  };
+  const obj: Family1<number, string> = {
+    mother: 100,
+    father: 10,
+    child: "hoge",
+  };
+
+  type HasName = {
+    name: string;
+  };
+
+  type Family<Parent extends HasName, Child extends HasName> = {
+    // 型引数を特定の型の部分型に制限することもできる
+    mother: Parent;
+    father: Parent;
+    child: Child;
+  };
+
+  //   type T = Family<number, string>; // つまりこうはかけない
+
+  type Animal = {
+    name: string;
+  };
+
+  // こうすると、型引数をオプショナルにでき、指定しない場合はデフォルトでAnimalになる
+  type Family2<Parent = Animal, Child extends HasName = Animal> = {
+    mother: Parent;
+    father: Parent;
+    child: Child;
+  };
+  type A = Family2<string, { name: string; age: number }>; //通常通りの」使い方
+  type B = Family2; // Family<Animal, Animal>と同じ
+  type C = Family2<string>; //Family<string, Animal>と同じ
+};
