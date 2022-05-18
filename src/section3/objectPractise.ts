@@ -178,3 +178,69 @@ const objectTypeOfKeyWord = () => {
   };
   console.log(obj2);
 };
+
+const subTyping = () => {
+  type FooBar = {
+    foo: string;
+    bar: number;
+  };
+  // FooBarBazはFooBarの構造的部分方である
+  type FooBarBaz = {
+    foo: string;
+    bar: number;
+    baz: boolean;
+  };
+  const obj: FooBarBaz = {
+    foo: "hi",
+    bar: 1,
+    baz: false,
+  };
+  const obj2: FooBar = obj; // FooBarBaz型はFooBar型に含まれる
+  console.log(obj);
+  console.log(obj.foo, obj.bar, obj.baz);
+  console.log(obj2);
+  //   console.log(obj2.foo, obj2.bar, obj2.baz);  FooBar型のものは、プロパティにbazを持っていても、アクセスしようとするとコンパイルエラーになる
+  console.log(obj2.foo, obj2.bar);
+
+  //以下のように、各プロパティの名前とその型がさらに部分型だった場合も、部分型となる
+  type Animal = {
+    age: number;
+  };
+  type Human = {
+    age: number;
+    name: string;
+  };
+  type AnimalFamily = {
+    familyName: string;
+    mother: Animal;
+    father: Animal;
+    child: Animal;
+  };
+  type HumanFamily = {
+    familyName: string;
+    mother: Human;
+    father: Human;
+    child: Human;
+  };
+  const humanFamily1: HumanFamily = {
+    familyName: "suzuki",
+    mother: { age: 22, name: "hoge" },
+    father: { age: 22, name: "piyo" },
+    child: { age: 9, name: "fuga" },
+  };
+  const animalFamily1: AnimalFamily = humanFamily1;
+
+  type User = { name: string; age: number };
+  const u: User = {
+    name: "hoge",
+    age: 26,
+    //   telNumber: "000-0000"これは余分なプロパティを持っているというコンパイルエラーになる(部分型的には問題ない(型安全)はずだが、プログラマのミスを防止するためにこういう挙動になっている)
+  };
+  const orig = {
+    name: "hoge",
+    age: 26,
+    telNumber: "000-0000",
+  };
+  const u2: User = orig; //これはOK。余分なプロパティを持つというコンパイルエラーはオブジェクトリテラルを直接型注釈のある変数に入れた時のみ発生する
+};
+subTyping();
