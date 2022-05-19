@@ -289,3 +289,38 @@ const typeParameter = () => {
   type B = Family2; // Family<Animal, Animal>と同じ
   type C = Family2<string>; //Family<string, Animal>と同じ
 };
+const array = () => {
+  const arr = [0, 123, -456 * 1000];
+  console.log(arr);
+  const arr2 = [100, "文字列", false];
+  const arr3 = [1, 2, 3, ...arr2, ...arr];
+  console.log(arr2);
+  console.log(arr3);
+  console.log(arr3[0]);
+  console.log(arr3[1]);
+  arr3[0] = "hoge";
+  console.log(arr3);
+
+  const typedArray: number[] = [1, 2, 3]; //OK!
+  // const typedArray2: string[] = [1, 2, 3]; //NG
+  const typedArray3: Array<number> = [1, 2, 3]; //こんな書き方もできる
+  const typedArray4: (number | string | boolean)[] = [
+    1,
+    "hoge",
+    false,
+    2,
+    true,
+    "fuga",
+  ];
+  const readonlyArray: readonly number[] = [1, 2, 3];
+  // readonlyArray[1] = 100 これはコンパイルエラーになる。
+  const arrPush = [1, 10, 100];
+  arrPush.push(1000);
+  console.log(arrPush);
+  // arrPush.push("hoo"); // コンパイルエラー。宣言時に型推論でnumber[]型になっているため。
+  // const readonlyArray.push(10) // コンパイルエラーになる。readonlyなので。
+  console.log(arrPush.includes(1));
+  console.log(arrPush.includes(5));
+  // console.log(arrPush.includes("hoge"))//コンパイルエラーになる。 number[]型に対してstringの要素を探しに行っているので。
+};
+array();
