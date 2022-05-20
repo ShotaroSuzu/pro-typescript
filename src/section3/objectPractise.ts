@@ -397,6 +397,27 @@ const destructuringAssignment = () => {
   } = nestedWithArray;
   console.log(fooFirst);
   console.log(name);
+
+  type Obj = { fooObj?: number | null };
+  const obj1: Obj = {};
+  const obj2: Obj = { fooObj: -123 };
+  const obj3: Obj = { fooObj: null };
+
+  const { fooObj = 500 } = obj1; // 分割代入のデフォルト値はundefinedのみに対して適用される
+  console.log(fooObj);
+  const { fooObj: fooObj2 = 500 } = obj2;
+  console.log(fooObj2);
+  const { fooObj: fooObj3 = 500 } = obj3;
+  console.log(fooObj3);
+
+  const restPattern = { foo: "hoge", bar: 123, baz: true };
+  const { bar: barRest, ...restObj } = restPattern;
+  console.log(barRest);
+  console.log(restObj);
+
+  const restArray = [1, 1, 2, 3, 5, 8, 13];
+  const [firstRest, secondRest, thirdRest, ...restElems] = restArray;
+  console.log(restElems);
 };
 
 destructuringAssignment();
