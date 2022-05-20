@@ -419,5 +419,17 @@ const destructuringAssignment = () => {
   const [firstRest, secondRest, thirdRest, ...restElems] = restArray;
   console.log(restElems);
 };
+// destructuringAssignment();
 
-destructuringAssignment();
+const dateObject = () => {
+  const d = new Date();
+  console.log(d);
+  console.log(Date.now());
+
+  const date = new Date("2020-02-03T14:00+09:00");
+  const timeNum = date.getTime();
+  console.log(timeNum);
+  const date2 = new Date(timeNum);
+  console.log(date2);
+};
+dateObject();
