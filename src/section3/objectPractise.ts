@@ -322,5 +322,39 @@ const array = () => {
   console.log(arrPush.includes(1));
   console.log(arrPush.includes(5));
   // console.log(arrPush.includes("hoge"))//コンパイルエラーになる。 number[]型に対してstringの要素を探しに行っているので。
+
+  const arrForOf = [1, 10, 100];
+  for (const elm of arrForOf) {
+    console.log(elm);
+  }
+
+  // forofの中で書き換えをするのであればletで変数を宣言(そのような状況はほぼないが)
+  for (let elm of arrForOf) {
+    elm *= 10;
+    console.log(elm);
+  }
+  console.log(arrForOf); //forof によって取り出されてた要素は別のelmにコピーされるので、その値を変えたところで元の配列には影響はない。
+  const arrForOf2 = [
+    { name: "hoge", age: 12, hobby: { name: "reading book", length: 5 } },
+    { name: "hoge", age: 12, hobby: { name: "watching anime", length: 10 } },
+  ];
+  for (const elm of arrForOf2) {
+    // ただし、shallow copy なので中身を書き換えると配列に入っているオブジェクトも書き換わる
+    elm.age = 17;
+    elm.hobby.length = 7;
+  }
+  console.log(arrForOf2);
+
+  let tuple: [string, number] = ["foo", 0]; //　長さと要素の型を指定することができる。
+  tuple = ["bar", -123];
+
+  const str = tuple[0];
+  const num = tuple[1];
+  // const nothing = tuple[2]; index2以降の要素はないので、コンパイルエラーになる。
+
+  type User = [name: string, age: number]; //このように要素にラベルを付けられる
+  const suzu: User = ["suzu", 18];
+  console.log(suzu[1]);
+  // console.log(suzu[name]);//ラベルはあくまでも読みやすくするだけの役割しか持っていないので、このようにはかけない
 };
 array();
