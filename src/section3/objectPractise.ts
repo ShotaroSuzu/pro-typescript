@@ -357,4 +357,46 @@ const array = () => {
   console.log(suzu[1]);
   // console.log(suzu[name]);//ラベルはあくまでも読みやすくするだけの役割しか持っていないので、このようにはかけない
 };
-array();
+// array();
+
+const destructuringAssignment = () => {
+  const obj = { foo: 123, bar: 456, baz: 789 };
+  const { foo, bar: bar2 } = obj; // bar は別名 bar2に変更することもできる
+  console.log(foo);
+  console.log(bar2);
+  const nested = {
+    num: 987,
+    obj: {
+      foo: "hello",
+      bar: "world",
+    },
+  };
+  const {
+    num,
+    obj: { bar },
+  } = nested;
+  console.log(num);
+  console.log(bar);
+
+  const arr = [1, 2, 4, 8, 16, 32];
+  const [first, second, third] = arr;
+  console.log(first);
+  console.log(second);
+  console.log(third);
+
+  const nestedWithArray = {
+    array: ["foo", "bar"],
+    arrayObj: [
+      { name: "fooName", age: 12 },
+      { name: "barName", age: 18 },
+    ],
+  };
+  const {
+    array: [fooFirst],
+    arrayObj: [, { name }],
+  } = nestedWithArray;
+  console.log(fooFirst);
+  console.log(name);
+};
+
+destructuringAssignment();
