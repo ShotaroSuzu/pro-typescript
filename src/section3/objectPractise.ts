@@ -432,4 +432,33 @@ const dateObject = () => {
   const date2 = new Date(timeNum);
   console.log(date2);
 };
-dateObject();
+// dateObject();
+
+const regularExpression = () => {
+  const r = /ab+c/;
+  console.log(r.test("abbbbbc"));
+  console.log(r.test("Hello, abc world"));
+  console.log(r.test("ABC"));
+  console.log(r.test("ab"));
+
+  console.log("Hello, abbbbbbbbc world! abbc".replace(/ab+c/, "foobar"));
+  console.log("Hello, abbbbbbbbc world! abbc".replace(/ab+c/g, "foobar"));
+
+  const result = "Hello, abbbbbc world! abc".match(/a(b+)c/);
+  if (result !== null) {
+    result.forEach((e) => {
+      console.log(e);
+    });
+  }
+  const result2 = "Hello, abbbbbc world! abc".match(/a(?<worldName>b+)c/);
+  if (result2 !== null) {
+    console.log(result2.groups);
+  }
+  const result3 = "Hello, abbbbbc world! abc".match(/a(?<worldName>b+)c/g);
+  if (result2 !== null) {
+    result3?.forEach((element) => {
+      console.log(element);
+    });
+  }
+};
+regularExpression();
