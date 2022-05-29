@@ -461,4 +461,63 @@ const regularExpression = () => {
     });
   }
 };
-regularExpression();
+// regularExpression();
+
+const mapPractice = () => {
+  const map: Map<string, number> = new Map();
+  map.set("foo", 1234);
+  console.log(map.get("foo"));
+  console.log(map.get("bar"));
+  console.log(map);
+  map.set("bar", 56787);
+  console.log(map);
+  console.log(map.size);
+  map.delete("foo");
+  map.delete("baz");
+  console.log(map);
+  map.clear();
+  console.log(map);
+
+  map.set("foo", 123);
+  map.set("bar", 456);
+  map.set("baz", 789);
+  map.set("baz", 111213);
+  for (const entry of map) {
+    console.log(entry);
+  }
+  for (const key of map.keys()) {
+    console.log(key);
+  }
+  for (const value of map.values()) {
+    console.log(value);
+  }
+  for (const entry2 of map.entries()) {
+    console.log(entry2);
+  }
+};
+// mapPractice();
+
+const setPractice = () => {
+  const set: Set<string> = new Set();
+  set.add("foo");
+  set.add("bar");
+  set.add("baz");
+
+  console.log(set);
+  console.log(set.size);
+  console.log(set.keys());
+  console.log(set.values());
+  for (const key of set.keys()) {
+    console.log(key);
+  }
+  for (const value of set.values()) {
+    console.log(value);
+  }
+  console.log(set.add("bar"));
+  console.log(set.delete("baz"));
+  console.log(set.delete("hoge"));
+  console.log(set);
+  set.clear();
+  console.log(set);
+};
+// setPractice();
